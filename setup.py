@@ -9,10 +9,10 @@ except IOError:
 setup(
     name="roborock-exporter",
     version="0.1.0",
-    description="A pip package",
+    description="A prometheus exporter for roborock",
     license="AGPL",
     author="hundehausen",
-    packages=find_packages(),
+    packages=['python-miio', 'prometheus_client'],
     install_requires=[],
     long_description=long_description,
     classifiers=[
