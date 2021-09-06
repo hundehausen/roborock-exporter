@@ -28,12 +28,22 @@ class RoborockMetrics:
         self.inSegmentCleaningGauge = Gauge("roborock_in_segment_cleaning", "Boolean if is in segment cleaning")
         self.inZoneCleaningGauge = Gauge("roborock_in_zone_cleaning", "Boolean if is in zone cleaning")
         self.isOnGauge = Gauge("roborock_is_on", "Boolean if vacuum is cleaning")
-        self.isPaused = Gauge("roborock_battery", "Current battery percentage")
-        self.batteryGauge = Gauge("roborock_battery", "Current battery percentage")
-        self.batteryGauge = Gauge("roborock_battery", "Current battery percentage")
+        self.isPausedGauge = Gauge("roborock_is_pause", "Boolean if vacuum is paused")
+        self.isWaterBoxAttachedGauge = Gauge("roborock_is_water_box_attached", "Boolean if waterbox is attached")
+        self.isWaterBoxCarriageAttachedGauge = Gauge("roborock_is_water_box_carriage_attached", "Boolean if carriage is attached")
+        self.isWaterShortageGauge = Gauge("roborock_water_shortage_status", "Boolean if there is water shortage")
+        self.stateGauge = Gauge("roborock_state", "Roborock state")
 
-        self.health = Enum("app_health", "Health", states=["healthy", "unhealthy"])
+        self.cleanCountGauge = Gauge("roborock_clean_count", "Integer count of cleanings")
+        self.dustCollectionCountGauge = Gauge("roborock_dust_collection_count", "Integer count dust collections")
+        self.totalAreaGauge = Gauge("roborock_total_area", "Metric of total cleaned area in m2")
+        self.totalDurationGauge = Gauge("roborock_total_duration", "Metric of total time cleaning")
 
+        self.filterLeftGauge = Gauge("roborock_filter_left", "Metric of left time until change of filter")
+        self.mainBrushLeftGauge = Gauge("roborock_main_brush_left", "Metric of left time until change of main brush")
+        self.sensorDirtyLeftGauge = Gauge("roborock_sensor_dirty_left", "Metric of left time until cleaning of sensors")
+        self.sideBrushLeftGauge = Gauge("roborock_side_brush_left", "Metric of left time until change of side brush")
+        
     def run_metrics_loop(self):
         """Metrics fetching loop"""
 
@@ -60,7 +70,7 @@ class RoborockMetrics:
         isWaterBoxAttached = status.is_water_box_attached
         isWaterBoxCarriageAttached = status.is_water_box_carriage_attached
         isWaterShortage = status.data['water_shortage_status']
-        state = status.state
+        state = status.data['state']
 
         cleaningSummary = self.vac.clean_history()
 
@@ -74,7 +84,7 @@ class RoborockMetrics:
         filterLeft = consumable.filter_left
         mainBrushLeft = consumable.main_brush_left
         sensorDirtyLeft = consumable.sensor_dirty_left
-        sideBrush Left = consumable.side_brush_left
+        sideBrushLeft = consumable.side_brush_left
 
         # Update Prometheus metrics with application metrics
         self.batteryGauge.set(battery)
