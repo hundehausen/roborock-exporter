@@ -20,7 +20,7 @@ class RoborockMetrics:
 
         # Prometheus metrics to collect
         self.batteryGauge = Gauge("roborock_battery", "Current battery percentage")
-        self.cleanAreaGauge = Gauge("roborock_clean_are", "Clean area in m2")
+        self.cleanAreaGauge = Gauge("roborock_clean_area", "Clean area in m2")
         self.cleanTimeGauge = Gauge("roborock_clean_time", "Cleaning time in seconds")
         self.errorCodeGauge = Gauge("roborock_error_code", "Boolean if error occurred")
         self.fanspeedGauge = Gauge("roborock_fanspeed", "Current fanspeed code")
