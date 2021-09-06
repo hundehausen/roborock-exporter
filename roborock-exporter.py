@@ -24,7 +24,7 @@ class RoborockMetrics:
         self.cleanAreaGauge = Gauge("roborock_clean_are", "Clean area in m2")
         self.cleanTimeGauge = Gauge("roborock_clean_time", "Cleaning time in seconds")
         self.errorCodeGauge = Gauge("roborock_error_code", "Boolean if error occurred")
-        self.fanspeed = Gauge("roborock_fanspeed", "Current fanspeed code")
+        self.fanspeedGauge = Gauge("roborock_fanspeed", "Current fanspeed code")
         self.inSegmentCleaningGauge = Gauge("roborock_in_segment_cleaning", "Boolean if is in segment cleaning")
         self.inZoneCleaningGauge = Gauge("roborock_in_zone_cleaning", "Boolean if is in zone cleaning")
         self.isOnGauge = Gauge("roborock_is_on", "Boolean if vacuum is cleaning")
@@ -43,7 +43,7 @@ class RoborockMetrics:
         self.mainBrushLeftGauge = Gauge("roborock_main_brush_left", "Metric of left time until change of main brush")
         self.sensorDirtyLeftGauge = Gauge("roborock_sensor_dirty_left", "Metric of left time until cleaning of sensors")
         self.sideBrushLeftGauge = Gauge("roborock_side_brush_left", "Metric of left time until change of side brush")
-        
+
     def run_metrics_loop(self):
         """Metrics fetching loop"""
 
@@ -86,8 +86,12 @@ class RoborockMetrics:
         sensorDirtyLeft = consumable.sensor_dirty_left
         sideBrushLeft = consumable.side_brush_left
 
-        # Update Prometheus metrics with application metrics
+        # Update Prometheus metrics with roborock metrics
         self.batteryGauge.set(battery)
+        self.cleanAreaGauge.set(cleanArea)
+        self.cleanTimeGauge.set(cleanTime)
+        self.errorCodeGauge.set(errorCode)
+        self.fanspeedGauge.set(fanspeed)
 
 def main():
     """Main entry point"""
