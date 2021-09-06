@@ -76,7 +76,7 @@ class RoborockMetrics:
         cleanCount = cleaningSummary.count
         dustCollectionCount = cleaningSummary.dust_collection_count
         totalArea = cleaningSummary.total_area
-        totalDuration = cleaningSummary.total_duration.seconds
+        totalDuration = cleaningSummary.total_duration
 
         consumable = self.vac.consumable_status()
 
@@ -103,7 +103,7 @@ class RoborockMetrics:
         self.cleanCountGauge.set(cleanCount)
         self.dustCollectionCountGauge.set(dustCollectionCount)
         self.totalAreaGauge.set(totalArea)
-        self.totalDurationGauge.set(totalDuration)
+        self.totalDurationGauge.set(totalDuration.total_seconds())
 
         self.filterLeftGauge.set(filterLeft.total_seconds())
         self.mainBrushLeftGauge.set(mainBrushLeft.total_seconds())
