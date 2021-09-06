@@ -114,8 +114,8 @@ def main():
     """Main entry point"""
 
     polling_interval_seconds = int(os.getenv("POLLING_INTERVAL_SECONDS", "30"))
-    ip_address = os.getenv("IP_ADDRESS", "192.168.30.224")
-    token = os.getenv("TOKEN", "595037474941624f63494a6651533636")
+    ip_address = os.getenv("IP_ADDRESS", None)
+    token = os.getenv("TOKEN", None)
     exporter_port = int(os.getenv("EXPORTER_PORT", "9877"))
 
     roborock_metrics = RoborockMetrics(
