@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:slim
 
 LABEL description="Prometheus Exporter for roborock vacuums."
 
@@ -11,3 +11,4 @@ ENV IP_ADDRESS=
 ENV TOKEN=
 
 CMD [ "python", "./roborock-exporter.py" ]
+EXPOSE 9877/tcp

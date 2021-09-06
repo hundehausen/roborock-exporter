@@ -11,7 +11,7 @@ class RoborockMetrics:
     Roborock metrics into Prometheus metrics.
     """
 
-    def __init__(self, ip_address="192.168.30.224", token="595037474941624f63494a6651533636", polling_interval_seconds=30):
+    def __init__(self, ip_address=None, token=None, polling_interval_seconds=30):
         self.polling_interval_seconds = polling_interval_seconds
         self.vac = Vacuum(ip_address, token)
 
