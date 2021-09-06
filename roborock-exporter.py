@@ -1,9 +1,8 @@
 import os
 import sys
 import time
-import requests
 from miio import Vacuum
-from prometheus_client import start_http_server, Gauge, Enum
+from prometheus_client import start_http_server, Gauge
 
 
 class RoborockMetrics:
@@ -93,7 +92,7 @@ class RoborockMetrics:
         self.errorCodeGauge.set(errorCode)
         self.fanspeedGauge.set(fanspeed)
         self.inSegmentCleaningGauge.set(inSegmentCleaning)
-        self.inZoneCleaning.set(inZoneCleaning)
+        self.inZoneCleaningGauge.set(inZoneCleaning)
         self.isOnGauge.set(isOn)
         self.isPausedGauge.set(isPaused)
         self.isWaterBoxAttachedGauge.set(isWaterBoxAttached)
@@ -106,10 +105,10 @@ class RoborockMetrics:
         self.totalAreaGauge.set(totalArea)
         self.totalDurationGauge.set(totalDuration)
 
-        self.filterLeftGauge.set(filterLeft)
-        self.mainBrushLeftGauge.set(mainBrushLeft)
-        self.sensorDirtyLeftGauge.set(sensorDirtyLeft)
-        self.sideBrushLeftGauge.set(sideBrushLeft)
+        self.filterLeftGauge.set(filterLeft.total_seconds())
+        self.mainBrushLeftGauge.set(mainBrushLeft.total_seconds())
+        self.sensorDirtyLeftGauge.set(sensorDirtyLeft.total_seconds())
+        self.sideBrushLeftGauge.set(sideBrushLeft.total_seconds())
 
 def main():
     """Main entry point"""
