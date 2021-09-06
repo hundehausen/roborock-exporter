@@ -92,6 +92,24 @@ class RoborockMetrics:
         self.cleanTimeGauge.set(cleanTime)
         self.errorCodeGauge.set(errorCode)
         self.fanspeedGauge.set(fanspeed)
+        self.inSegmentCleaningGauge.set(inSegmentCleaning)
+        self.inZoneCleaning.set(inZoneCleaning)
+        self.isOnGauge.set(isOn)
+        self.isPausedGauge.set(isPaused)
+        self.isWaterBoxAttachedGauge.set(isWaterBoxAttached)
+        self.isWaterBoxCarriageAttachedGauge.set(isWaterBoxCarriageAttached)
+        self.isWaterShortageGauge.set(isWaterShortage)
+        self.stateGauge.set(state)
+
+        self.cleanCountGauge.set(cleanCount)
+        self.dustCollectionCountGauge.set(dustCollectionCount)
+        self.totalAreaGauge.set(totalArea)
+        self.totalDurationGauge.set(totalDuration)
+
+        self.filterLeftGauge.set(filterLeft)
+        self.mainBrushLeftGauge.set(mainBrushLeft)
+        self.sensorDirtyLeftGauge.set(sensorDirtyLeft)
+        self.sideBrushLeftGauge.set(sideBrushLeft)
 
 def main():
     """Main entry point"""
